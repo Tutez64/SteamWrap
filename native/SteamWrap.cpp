@@ -1,5 +1,4 @@
 #define IMPLEMENT_API
-#include <hx/CFFI.h>
 #include <hx/CFFIPrime.h>
 
 #include <stdio.h>
