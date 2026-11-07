@@ -3731,8 +3731,9 @@ DEFINE_PRIME4(SteamWrap_SendP2PPacket);*/
 
 		EInputActionOrigin eOrigin = static_cast<EInputActionOrigin>(iOrigin);
 
+		// Steam has no glyph for k_EInputActionOrigin_None, and alloc_string doesn't take null.
 		const char *result = SteamInput()->GetGlyphPNGForActionOrigin(eOrigin, k_ESteamInputGlyphSize_Medium, 0);
-		return alloc_string(result);
+		return alloc_string(result ? result : "none");
 	}
 	DEFINE_PRIM(SteamWrap_GetGlyphForActionOrigin, 1);
 
@@ -3753,7 +3754,7 @@ DEFINE_PRIME4(SteamWrap_SendP2PPacket);*/
 		EInputActionOrigin eOrigin = static_cast<EInputActionOrigin>(iOrigin);
 
 		const char *result = SteamInput()->GetStringForActionOrigin(eOrigin);
-		return alloc_string(result);
+		return alloc_string(result ? result : "unknown");
 	}
 	DEFINE_PRIM(SteamWrap_GetStringForActionOrigin, 1);
 
